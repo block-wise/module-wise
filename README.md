@@ -21,3 +21,18 @@ python3 resnet101-2modules-cifar100.py -cln 1CNN -trt par -ne0 300 -opt sgd -lrt
 ```
 python3 resnet101-e2e-cifar100.py
 ```
+
+Experiments in Table 3
+
+```
+python3 resnet110-16modules-stl10.py -trt par -bas 64 -lbs 0.1 -lrt 0.002 -ing 0.1 -tra 1 -tau 1 -vta 1 -ne0 300 -see 0 1 2 3 4 -avg
+```
+```
+python3 resnet110-8modules-stl10.py -trt par -bas 64 -lbs 0.1 -lrt 0.002 -ing 0.1 -tra 1 -tau 1 -vta 1 -ne0 300 -see 0 1 2 3 4 -avg
+```
+```
+python3 resnet110-4modules-stl10.py -trt par -bas 64 -lbs 0.1 -lrt 0.002 -ing 0.1 -tra 1 -tau 1 -vta 1 -ne0 300 -see 0 1 2 3 4 5 6 -avg
+```
+```
+python3 resnet110-2modules-stl10.py -trt par -bas 64 -lbs 0.1 -lrt 0.002 -ing 0.1 -tra 1 -tau 100 -vta 1 -ne0 300 -see 0 1 2 3 4 -avg
+```
