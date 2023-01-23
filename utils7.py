@@ -302,6 +302,12 @@ def create_classifier(name, nclasses, featureshape, apc = 0, bias = False):
 		return MLPSR(featureshape[1], featureshape[2], nclasses)
 	if name == 'ALIN':
 		return nn.Sequential(nn.AdaptiveAvgPool2d(1), nn.Flatten(), nn.Linear(featureshape[1], nclasses))
+	if name == "1C2F":
+		nfilters = featureshape[1] if (type(featureshape) is list or type(featureshape) is tuple) else None
+		intfilters = 32 if nfilters == 16 else (64 if nfilters < 128 else nfilters)
+		stride = 2 if nfilters < 64 else 1
+		return nn.Sequential(nn.Conv2d(nfilters, intfilters, 3, stride, 1, bias = bias), nn.BatchNorm2d(intfilters), nn.ReLU(True), nn.AdaptiveAvgPool2d((1, 1)), nn.Flatten(), nn.Linear(intfilters, 128), nn.ReLU(True),
+                    		 nn.Linear(128, nclasses))
 
 def initialize(name, gain, module):
 	if name == 'orthogonal':
